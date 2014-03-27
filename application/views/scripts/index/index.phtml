@@ -1,0 +1,146 @@
+<div class="row" id="rowHomeForm">
+
+    <!-- Container Img -->
+    <div class="panel-img-home">
+        <img src="/img/cover-home.png" />
+    </div>
+    
+    <!-- Conteúdo -->
+    <div class="panel-conteudo-home">
+        <p>Fique por dentro de todas as promoções de passagens aéreas para os seus destinos preferidos.</p>
+        <p>Com o Avise-ME você é informado via SMS sempre que uma passagem do seu interesse estiver dentro do preço acessível.</p>
+    </div>
+    
+    <!-- Painel -->
+    <div class="panel-form-home">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-lock"></span> Avise-me sobre promoções de passagens</div>
+            <div class="panel-body">
+
+                <!-- Formulaário -->
+                <form class="form-horizontal" role="form">
+                    <!-- Campo Ida e Volta -->
+                    <!--<div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10 dvRadIda">
+                            <input type="radio" name="radOrigem" id="radOrigemIdaVolta" checked="true" > <label for="radOrigemIdaVolta">Ida e Volta</label>
+                            <input type="radio" name="radOrigem" id="radOrigemIda"> <label for="radOrigemIda">Somente Ida</label>
+                        </div>
+                    </div>-->
+
+                    <!-- Usuário cadastrado -->
+                    <!--<div class="form-group form-rad">
+                        <div class="col-sm-10 dvRadIda">
+                            <input type="radio" name="radNovoUsuario" id="radNovoUsuario" checked="true" value=1> <label for="radNovoUsuario">Novo usuário</label>
+                            <input type="radio" name="radNovoUsuario" id="radUsuarioCadastrado" value=2> <label for="radUsuarioCadastrado">Usuário já cadastrado</label>
+                        </div>
+                    </div>-->
+
+                    <!-- Campo Origem -->
+                    <div class="dvLocalizacao">
+                        <div class="form-group">
+                            <label for="inputDe" class="control-label">
+                                Origem:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control inputLocalizacao" id="inputDe" required>
+                            </div>
+                        </div>
+                        <!-- Campo Destino -->
+                        <div class="form-group">
+                            <label for="inputPara" class="control-label">
+                                Destino:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control inputLocalizacao" id="inputPara" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Periodo -->
+                    <div class="dvPeriodo">
+                        <label for="inputDe" class="control-label labelPeriodo">
+                            Buscar por passagens entre os dias:
+                        </label>
+                        <!-- Data início -->
+                        <div class="form-group">
+                            <input type="text" readonly class="form-control datepicker" id="inputDataInicio" required>
+                            <span class="add-on">
+                                <i class="icon-calendar"></i>
+                            </span>
+                        </div>
+                        <!-- Data fim -->
+                        <div class="form-group">
+                            <label for="inputPara" class="control-label">à</label>
+                            <input type="text" readonly class="form-control datepicker" id="inputDataFinal" required>
+                        </div>                            
+
+                        <div class="clear"></div>
+                    </div>
+                    <!-- Valor máximo -->
+                    <div class="form-group dvValor">
+                        <label for="inputValor" class="control-label" >Valor máximo que gostaria de pagar (R$):</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control money" id="inputValor" required>
+                        </div>
+                    </div>
+                    <!-- Telefone -->
+                    <!--<div class="form-group">
+                        <label for="inputTel" class="control-label">Telefone</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control bfh-phone inputTel" id="inputTel" required>
+                        </div>
+                    </div>-->
+                    <!-- Senha -->
+                    <!-- <div class="form-group">
+                        <label for="inputSenha" class="control-label">Senha</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputSenha" required maxlength="10">
+                        </div>
+                    </div>-->
+                    <!-- Confirma da Senha -->
+                    <!-- <div class="form-group dvConfSenha">
+                        <label for="inputSenhaConf" class="control-label">Confirme a Senha</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputSenhaConf" required maxlength="10">
+                        </div>
+                    </div>-->
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-success btn-sm">Enviar</button>
+                            <button type="reset" class="btn btn-default btn-sm">Limpar</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="panel-footer">
+                Ainda não se registrou? <a href="/">Cadastre-se aqui</a></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Carrega as máscaras e plugins dos campos
+        carregarMascaras();
+
+        //Oculta/exibe os campos de cadastro de novo usuário
+        $("input[name=radNovoUsuario]").unbind("click");
+        $("input[name=radNovoUsuario]").bind("click", function() {
+            if ($(this).val() == 2) {
+                $(".dvConfSenha").hide();
+            } else {
+                $(".dvConfSenha").show();
+            }
+        });
+        
+        //Carrega o campos de autocomplete
+        var options = { 
+                        serviceUrl:'/destino/listar-ajax',
+                        type: 'post',
+                        dataType: 'json'
+                      };
+    
+        $('.inputLocalizacao').autocomplete(options);
+        
+    });
+</script>
