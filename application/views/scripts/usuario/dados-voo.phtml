@@ -1,0 +1,178 @@
+<?php
+$front = Zend_Controller_Front::getInstance();
+$action = $front->getRequest()->getActionName();
+
+if ($action == 'dados-voo') {
+    //Barra de progresso do cadastro
+    $this->stepBar();
+
+    echo '<div class="row rowDadosVoo rowDadosForm" id="rowForm">';
+}
+?>
+
+<!-- Painel -->
+<div class="panel-form panel-form-home">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-lock"></span> Avise-me sobre promoções de passagens</div>
+        <div class="panel-body">
+            <?php 
+                if ($action == 'dados-voo') {
+                    echo "<h3>Preencha os dados do seu voo</h3>";
+                }
+            ?>
+            
+            <!-- Formulaário -->
+            <form class="form-horizontal" role="form" method="post" action="/usuario/dados-pessoais">
+
+                <!-- Campo Origem -->
+                <div class="dvLocalizacao">
+                    <div class="form-group">
+                        <label for="inputDe" class="control-label">
+                            Origem:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="origem" id="inputDe" required
+                                   value="<?php echo $this->dataForm['origem'] ? $this->dataForm['origem'] : '' ?>" 
+                                   class="form-control inputLocalizacao" placeholder="Digite a origem">
+                            <input type="hidden" name="origem_data"
+                                   value="<?php echo $this->dataForm['origem_data'] ? $this->dataForm['origem_data'] : '' ?>">
+                        </div>
+                    </div>
+                    <!-- Campo Destino -->
+                    <div class="form-group">
+                        <label for="inputPara" class="control-label">
+                            Destino:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control inputLocalizacao" name="destino" id="inputPara"
+                                   value="<?php echo $this->dataForm['destino'] ? $this->dataForm['destino'] : '' ?>"
+                                   placeholder="Digite o destino" required>
+                            <input type="hidden" name="destino_data"
+                                   value="<?php echo $this->dataForm['destino_data'] ? $this->dataForm['destino_data'] : '' ?>">
+                        </div>
+                    </div>
+                </div>
+                <!-- Periodo -->
+                <div class="dvPeriodo">
+                    <label for="inputDe" class="control-label labelPeriodo">
+                        Buscar por passagens entre os dias:
+                    </label>
+                    <!-- Data início -->
+                    <div class="form-group">
+                        <input type="text" class="form-control datepicker" 
+                               value="<?php echo $this->dataForm['data_inicio'] ? $this->dataForm['data_inicio'] : '' ?>" 
+                               id="inputDataInicio" name="data_inicio" required>
+                        <span class="add-on">
+                            <i class="icon-calendar"></i>
+                        </span>
+                    </div>
+                    <!-- Data fim -->
+                    <div class="form-group">
+                        <label for="inputPara" class="control-label">à</label>
+                        <input type="text" value="<?php echo $this->dataForm['data_fim'] ? $this->dataForm['data_fim'] : '' ?>" class="form-control datepicker" 
+                               id="inputDataFinal" name="data_fim" required>
+                    </div>                            
+
+                    <div class="clear"></div>
+                </div>
+                <!-- Valor máximo -->
+                <div class="form-group dvValor">
+                    <label for="inputValor" class="control-label" >Valor máximo que gostaria de pagar (R$):</label>
+                    <div class="col-sm-10">
+                        <input type="text" 
+                               value="<?php echo $this->dataForm['valor'] ? $this->dataForm['valor'] : '' ?>" class="form-control money" 
+                               name="valor" id="inputValor" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-success btn-sm">Avançar</button>
+                        <button type="reset" class="btn btn-default btn-sm">Limpar</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="panel-footer">
+            <a href="/"></a>
+        </div>
+    </div>
+</div>
+
+<?php
+if ($action == 'dados-voo') {
+    echo '</div>';
+
+    //Coluna da direita
+    $this->colRight();
+}
+?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Carrega as máscaras e plugins dos campos
+        carregarMascaras();
+
+        //Oculta/exibe os campos de cadastro de novo usuário
+        $("input[name=radNovoUsuario]").unbind("click");
+        $("input[name=radNovoUsuario]").bind("click", function() {
+            if ($(this).val() == 2) {
+                $(".dvConfSenha").hide();
+            } else {
+                $(".dvConfSenha").show();
+            }
+        });
+
+        //Carrega o campos de autocomplete
+        var inputHiddenLoc = 'origem_data';
+        $('.inputLocalizacao').focus(function() {
+            inputHiddenLoc = $(this).parent().find("input[type=hidden]").attr('name');
+        });
+        $('.inputLocalizacao').blur(function() {
+            if ($('input[name='+inputHiddenLoc+']').val() == '') {
+                $(this).val('');
+            }
+        });
+        
+        var options = {
+            serviceUrl: '/destino/listar-ajax',
+            type: 'post',
+            dataType: 'json',
+            onSelect: function(rs) {
+                $('input[name='+inputHiddenLoc+']').val(rs.data);
+                return false;
+            },
+            onSearchStart: function() {
+                $('input[name='+inputHiddenLoc+']').val('');
+            }
+        };
+        
+        $('.inputLocalizacao').autocomplete(options);
+        
+
+        //Submete o formulário
+        $(".form-horizontal").submit(function() {
+            //Valida o período
+            periodoValidado = validarPeriodo($("#inputDataInicio"), $("#inputDataFinal"));
+            if (!periodoValidado) {
+                setNotification("A data final não pode ser menor que a data inicial!", 'warning');
+                return false;
+            }
+            
+            //Valida as localizações
+            if($("input[name=origem_data]").val() == $("input[name=destino_data]").val()) {
+                setNotification("A Origem deve ser diferente do Destino!", 'warning');
+                return false;
+            }
+        });
+        
+        //Limpa os campos
+        $("button[type=reset]").click(function() {
+            $("form.form-horizontal input").each(function() {
+                $(this).attr("value", "");
+                $(this).val("");
+            });
+        });
+
+    });
+</script>

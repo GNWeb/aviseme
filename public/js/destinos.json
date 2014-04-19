@@ -1,0 +1,801 @@
+{"station": [
+        {
+            "name": "Aracaju",
+            "code": "AJU",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Araguaina ",
+            "code": "AUX",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Aruba",
+            "code": "AUA",
+            "country": "AW",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Assunção",
+            "code": "ASU",
+            "country": "PY",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Atlanta",
+            "code": "ATL",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Austin",
+            "code": "AUS",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Barbados",
+            "code": "BGI",
+            "country": "BB",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Barreiras  ",
+            "code": "BRA",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Bauru",
+            "code": "JTC",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Belém",
+            "code": "BEL",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Belo Horizonte - Confins",
+            "code": "CNF",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Belo Horizonte - LabelMac",
+            "code": "BHZ",
+            "country": "BR",
+            "macCode": "BHZ"
+        }
+        ,
+        {
+            "name": "Belo Horizonte - Pampulha",
+            "code": "PLU",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Boa Vista ",
+            "code": "BVB",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Boston",
+            "code": "BOS",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Brasília ",
+            "code": "BSB",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Buenos Aires - LabelMac",
+            "code": "BUE",
+            "country": "AR",
+            "macCode": "BUE"
+        }
+        ,
+        {
+            "name": "Buenos Aires - Aeroparque",
+            "code": "AEP",
+            "country": "AR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Buenos Aires - Ezeiza",
+            "code": "EZE",
+            "country": "AR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Caldas Novas ",
+            "code": "CLV",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Campina Grande",
+            "code": "CPV",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Campo Grande ",
+            "code": "CGR",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Caracas",
+            "code": "CCS",
+            "country": "VE",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Cascavel",
+            "code": "CAC",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Caxias do Sul",
+            "code": "CXJ",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Chapecó",
+            "code": "XAP",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Charlotte",
+            "code": "CLT",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Chicago",
+            "code": "ORD",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Cincinnati",
+            "code": "CVG",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Córdoba",
+            "code": "COR",
+            "country": "AR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Cruzeiro do Sul",
+            "code": "CZS",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Cuiabá",
+            "code": "CGB",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Curaçao",
+            "code": "CUR",
+            "country": "CW",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Curitiba",
+            "code": "CWB",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Dallas - Fort Worth",
+            "code": "DFW",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Denver",
+            "code": "DEN",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Detroit",
+            "code": "DTW",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Detroit - LabelMac",
+            "code": "DTT",
+            "country": "US",
+            "macCode": "DTT"
+        }
+        ,
+        {
+            "name": "Dourados",
+            "code": "DOU",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Fernando de Noronha ",
+            "code": "FEN",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Filadelfia",
+            "code": "PHL",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Florianópolis",
+            "code": "FLN",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Fortaleza",
+            "code": "FOR",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Foz do Iguaçu",
+            "code": "IGU",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Goiânia",
+            "code": "GYN",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Houston",
+            "code": "IAH",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Houston - LabelMac",
+            "code": "HOU",
+            "country": "US",
+            "macCode": "HOU"
+        }
+        ,
+        {
+            "name": "Ilhéus",
+            "code": "IOS",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Imperatriz ",
+            "code": "IMP",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "João Pessoa",
+            "code": "JPA",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Joinville",
+            "code": "JOI",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Juazeiro do Norte",
+            "code": "JDO",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Las Vegas",
+            "code": "LAS",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Londrina ",
+            "code": "LDB",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Los Angeles",
+            "code": "LAX",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Macapá",
+            "code": "MCP",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Maceió",
+            "code": "MCZ",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Manaus",
+            "code": "MAO",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Marabá",
+            "code": "MAB",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Maringá",
+            "code": "MGF",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Miami",
+            "code": "MIA",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Mineapolis",
+            "code": "MSP",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Montes Claros ",
+            "code": "MOC",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Montevidéu",
+            "code": "MVD",
+            "country": "UY",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Natal",
+            "code": "NAT",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Navegantes",
+            "code": "NVT",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "New York City - LabelMac",
+            "code": "NYC",
+            "country": "US",
+            "macCode": "NYC"
+        }
+        ,
+        {
+            "name": "Nova Iorque - John F. Kennedy",
+            "code": "JFK",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Nova Iorque - La Guardia",
+            "code": "LGA",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Nova Iorque - Newark",
+            "code": "EWR",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Orlando",
+            "code": "MCO",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Palmas",
+            "code": "PMW",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Petrolina ",
+            "code": "PNZ",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Phoenix",
+            "code": "PHX",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Portland",
+            "code": "PDX",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Porto Alegre",
+            "code": "POA",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Porto Seguro ",
+            "code": "BPS",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Porto Velho",
+            "code": "PVH",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Presidente Prudente",
+            "code": "PPB",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Punta Cana ",
+            "code": "PUJ",
+            "country": "DO",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Raleigh/Durham",
+            "code": "RDU",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Recife",
+            "code": "REC",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Ribeirao Preto",
+            "code": "RAO",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Rio Branco",
+            "code": "RBR",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Rio de Janeiro - Galeao",
+            "code": "GIG",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Rio de Janeiro - LabelMac",
+            "code": "RIO",
+            "country": "BR",
+            "macCode": "RIO"
+        }
+        ,
+        {
+            "name": "Rio de Janeiro - Santos Dumont",
+            "code": "SDU",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Rosario",
+            "code": "ROS",
+            "country": "AR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Saint Louis",
+            "code": "STL",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Salt Lake City",
+            "code": "SLC",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Salvador",
+            "code": "SSA",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "San Diego",
+            "code": "SAN",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Santarem",
+            "code": "STM",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Santo Domingo",
+            "code": "SDQ",
+            "country": "DO",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "São Francisco",
+            "code": "SFO",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Sao Jose do Rio Preto",
+            "code": "SJP",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "São Luis",
+            "code": "SLZ",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "São Paulo - Campinas",
+            "code": "VCP",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Sao Paulo - Congonhas",
+            "code": "CGH",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Sao Paulo - Guarulhos",
+            "code": "GRU",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "São Paulo - LabelMac",
+            "code": "SAO",
+            "country": "BR",
+            "macCode": "SAO"
+        }
+        ,
+        {
+            "name": "Seattle",
+            "code": "SEA",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Sinop",
+            "code": "OPS",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Sta Cruz de la Sierra",
+            "code": "VVI",
+            "country": "BO",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Tampa",
+            "code": "TPA",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Teresina",
+            "code": "THE",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Tres Lagoas",
+            "code": "TJL",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Uberaba",
+            "code": "UBA",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Uberlandia",
+            "code": "UDI",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Valença",
+            "code": "VAL",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Vitória",
+            "code": "VIX",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Vitória da Conquista",
+            "code": "VDC",
+            "country": "BR",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Washington - Dulles",
+            "code": "IAD",
+            "country": "US",
+            "macCode": ""
+        }
+        ,
+        {
+            "name": "Washington - Ronald Reagan",
+            "code": "DCA",
+            "country": "US",
+            "macCode": ""
+        }
+
+    ]
+}

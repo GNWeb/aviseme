@@ -10,18 +10,58 @@ body {
     background-color: #f1f1fa;
     height: 100%;
 }
+p.msg {
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+div input {
+    margin: 0;
+}
+input.inputTel {
+    width: 140px;
+}
 div.dvBody {
     height: 100%;
     width: 1100px;
-    margin: 50px auto 0 auto;
+    /*margin: 50px auto 0 auto;*/
+    margin: 0 auto 0 auto;
 }
 div.dvFooter {
     background-color: #f5f5f5;
     height: 60px;
 }
-div#rowHomeForm {
+div.notifications {
+    z-index: 999;
+}
+div#rowHomeForm,
+div#rowForm {
     text-align: center;
-    margin: 50px 0 0 0;
+    margin: 0;
+    padding-top: 63px;
+}
+div#rowForm {
+    float: left;
+    width: 600px;
+    margin-top: 0;
+    padding-top: 0;
+}
+div#rowForm div.panel-form-home {
+    width: 640px;
+}
+div#rowForm div.panel-default {
+    margin: 0;
+    border: none;
+    height: 600px;
+}
+
+div#rowForm div.panel-heading,
+div#rowForm div.panel-footer{
+    display: none;
+}
+div#rowForm div.panel-form-home {
+    margin: 0;
 }
 div.container {
     width: 1100px;
@@ -51,9 +91,8 @@ div.panel-heading span.glyphicon:before {
 }
 
 body { 
-  /*background: url(http://lorempixel.com/1920/1920/city/9/) no-repeat center center fixed; */
-  /*background: url(../img/weather-wallpaper.jpg) no-repeat center center fixed; */
-  background: #F9F9F9; 
+  /*background: #F9F9F9; */
+  background: #222;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -61,18 +100,42 @@ body {
 }
 div.navbar-header img {
     float: left;
-    margin-top: 8px;
     margin-right: 10px;
+}
+div#dvBackground {
+    background: #F9F9F9;
+    margin-top: 0;
+    padding-top: 0;
+    /*padding-top: 28px;*/
 }
 .form-group.last { margin-bottom:0px; }
 div.dvRadIda label{
-    margin-right: 30px;
+    margin-right: 0px;
 }
 div.panel-form-home {
     margin-top: 0;
     width: 350px;
     float: right;
     text-align: left !important;
+}
+div.panel-form-home.panel-form-complemento div.dvCampoTel{
+    float: left;
+    clear: none;
+}
+div.panel-form-home.panel-form-complemento div.dvCampoEmail{
+    float: left;
+    clear: none;
+}
+div.panel-form-home.panel-form-complemento {
+    width: 620px;
+    float: left;
+    margin-left: 95px;
+}
+div.panel-heading.panel-heading-complemento span {
+    background: url(/img/form.png) no-repeat 0 3px;
+}
+div.panel-heading span.glyphicon {
+    margin-right: 4px;
 }
 div.panel-form-home div.form-group label{
     margin-left: 15px;
@@ -135,6 +198,7 @@ div #footer-content {
     color: #999999;
     font-size: 13px;
     padding-top: 10px;
+    text-align: right;
 }
 div.dvPeriodo div.form-group label {
     float: left;
@@ -145,6 +209,8 @@ div.dvPeriodo div.dvPeriodoFim input {
 }
 .clear {
     clear: both;
+    height: .1;
+    font-size: .1;
 }
 div.dvValor input {
     width: 120px;
@@ -167,6 +233,7 @@ div.form-login div.form-group button {
 }
 div.navbar-fixed-top {
     position: inherit !important;
+    margin-bottom: 0;
 }
 div.navbar-header a.navbar-brand {
     font-size: 24px;
@@ -174,9 +241,135 @@ div.navbar-header a.navbar-brand {
 }
 div.navbar-header img {
     width: 40px;
+    margin-top: 8px;
 }
 img.ui-datepicker-trigger {
     margin-left: -1px;
     height: 34px;
     float: left;
+}
+
+div.panel-form-complemento div.dvCampoSenha{
+    width: 280px;
+    float: left;
+    clear: none;
+}
+div.panel-form-complemento div.dvCampoSenha input {
+    width: 250px;
+}
+div.panel-form-complemento div.dvRadIda label {
+    margin-right: 30px;
+    margin-left: 5px;
+}
+div.form-group.form-rad div.dvRadIda{
+    margin: 0;
+    width: auto;
+}
+div.panel-form-complemento div.dvCampoEmail input {
+    width: 350px;
+}
+form.form-complemento-cadastro {
+}
+div.panel-form-complemento input.inputTel {
+    width: 150px;
+}
+
+/**
+ * SetBar
+ */
+
+#dvStepBar {
+    width: 200px;
+    float: left;
+    height: 600px;
+}
+#dvStepBar div.title{
+    background: #F5F5F5;
+    border-top: #DDDDDD 1px solid;
+    font-size: 13px;
+    padding: 4px 10px;
+    font-weight: bold;
+    font-family: "Lucida Grande", Helvetica,Arial;
+    margin-top: 63px;
+}
+#ulStepBar {
+    margin: 0;
+    padding: 0;
+}
+#ulStepBar li {
+    list-style: none;
+    padding: 6px 0 6px 20px;
+    margin: 0;
+    border-bottom: 1px solid #ececec;
+}
+#ulStepBar li.current {
+    background: #428bca;
+}
+#ulStepBar li.current a{
+    color: #fff;
+}
+#ulStepBar li.first {
+}
+#ulStepBar li.last {
+}
+#ulStepBar li a {
+}
+div.rowDadosForm div.panel-form {
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    background: #fff;
+}
+div.rowDadosForm div.panel-form{
+    padding-top: 25px !important;
+}
+div.rowDadosForm h3{
+    margin-left: 12px;
+    color: #428BCA;
+    border-bottom: 1px solid #428BCA;
+    margin-bottom: 25px;
+    width: 570px;
+}
+/**
+ * Dados do voo
+ */
+div.rowDadosForm div.panel-form-home {
+    float: left;
+    margin-left: 230px;
+}
+/**
+ * Coluna da direita
+ */
+div.colRight {
+    float: right;
+    min-height: 550px;
+    margin-right: 15px;
+    padding-left: 15px;
+}
+div.colRight div.widConversao {
+    margin-top: 63px;
+}
+/**
+ * Dados pessoais
+ */
+div.rowDadosPess div.dvRadIda label {
+    margin-right: 15px;
+    margin-left: 3px;
+}
+div.rowDadosPess input#inputTel {
+    width: 150px;
+}
+div.rowDadosPess div.dvCampoEmail input.form-control {
+    width: 297px;
+}
+div.rowDadosPess div.dvCampoEmail,
+div.rowDadosPess div.dvCampoTel {
+    float: left;
+    clear: none;
+}
+div.rowDadosPess div.dvCampoSenha input.form-control {
+    width: 224px;
+}
+div.rowDadosPess div.dvCampoSenha {
+    float: left;
+    clear: none;
 }

@@ -16,7 +16,7 @@ class Model_Destino extends Zend_Db_Table_Abstract
      * @param array $destino
      */
     public function salvar($destino) {
-        $where = 'codigo = ' . $destino['codigo'];
+        $where = "sigla = '" . $destino['sigla'] . "'";
         $rs = $this->fetchAll($where)->toArray();
         if (count($rs) > 0) {
             //Update

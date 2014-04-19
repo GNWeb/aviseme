@@ -27,17 +27,17 @@ class Business_Destino
         $urlDestinos = $constantsConfig->url->destinos;
         
         //Recupera os dados do servidor
-        $client = new Zend_Http_Client($urlDestinos);
-        $destinos = Zend_Json_Decoder::decode($client->request()->getBody());
+        //$client = new Zend_Http_Client($urlDestinos);
+        //$destinos = Zend_Json_Decoder::decode($client->request()->getBody());
+        $station = Zend_Json_Decoder::decode(file_get_contents("./js/destinos.json"));
+        $destinos = $station['station'];
         
         //Salva os destinos nacionais
-        foreach ($destinos['nacionais'] as $destino) {
+        foreach ($destinos as $destino) {
             $data = array();
-            $data['nome']       = $destino['nome'];
-            $data['sigla']      = $destino['val'];
-            $data['codigo']     = $destino['ID'];
-            $data['prioridade'] = $destino['Prioridade'];
-            $data['nacional']   = true;
+            $data['nome']       = utf8_encode($destino['name']);
+            $data['sigla']      = $destino['code'];
+            $data['pais']       = $destino['country'];
             
             $destinoModel->salvar($data);
         }
@@ -55,6 +55,7 @@ class Business_Destino
         //return $destinoModel->fetchAll("nome ilike " . $destinoModel->getAdapter()->quote($filtro), "nome")->toArray();
         return $destinoModel->fetchAll("remove_acento(nome) ILIKE remove_acento('%" . $filtro . "%')", "nome")->toArray();
     }
+
 
 }
 

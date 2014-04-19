@@ -1,0 +1,41 @@
+<?php
+
+    /**
+     * Monta as etapas do cadastro
+     */
+
+    $steps = array(
+        array(
+            'label' => '1) Escolha seu voo',
+            'link' => '/usuario/dados-voo'
+        ),
+        array(
+            'label' => '2) Preencha seus dados',
+            'link' => '/usuario/dados-pessoais'
+        ),
+        array(
+            'label' => '3) Valide o seu telefone',
+            'link' => '/usuario/validar-telefone'
+        ),
+        array(
+            'label' => '4) Conclusão',
+            'link' => ''
+        )
+    );
+    
+    $front = Zend_Controller_Front::getInstance();
+    $currentLink = "/" . $front->getRequest()->getControllerName() . "/" . $front->getRequest()->getActionName();
+    
+?>
+
+<div id="dvStepBar">
+    <div class="title">Cadastro</div>
+    <ul id="ulStepBar">
+        <?php 
+            foreach($steps as $step){ 
+                $class = ($step['link'] == $currentLink) ? "current" : "";
+                echo "<li class='{$class}'><a href='{$step['link']}'>{$step['label']}</a></li>";
+            }
+        ?>
+    </ul>
+</div>

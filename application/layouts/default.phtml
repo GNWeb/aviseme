@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bootstrap 101 Template</title>
+        <title>AviseME</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         
-
+        <!-- Favicon -->
+        <link rel="AviseME" href="/img/aviao.png" /> 
+        
         <!-- CSS -->
         <link href="/resources/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="/css/default.css" rel="stylesheet" media="screen">
@@ -14,22 +16,26 @@
 
         <!-- JS -->
         <script src="/resources/jquery/jquery-1.11.0.min.js"></script>
-        <script src="/resources/jquery/jquery.mask.min.js"></script>
+        <script src="/resources/jquery/jquery.maskedinput.js"></script>
+        <script src="/resources/jquery/jquery.price_format.2.0.js"></script>
         <script src="/resources/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
         <script src="/resources/jquery/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
         <script src="/resources/jquery/jquery-ui-1.10.4.custom/js/jquery.ui.datepicker-pt-BR.js"></script>
         <script src="/resources/jquery/jquery-autocomplete/jquery.autocomplete.js"></script>
+        <script src="/resources/jquery/jquery-noty/packaged/jquery.noty.packaged.js"></script>
         <script src="/js/general.js"></script>
 
     </head>
     <body>
-
+        <!-- Container das notificações -->
+        <div class='notifications top-right'></div>
+        
         <!-- Header -->
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <img src="/img/aviao.png" />
-                    <a class="navbar-brand" href="#">AviseME</a>
+                    <a class="navbar-brand" href="/">AviseME</a>
                 </div>
                 <div class="navbar-collapse collapse form-login">
                     <form class="navbar-form navbar-right" role="form">
@@ -50,8 +56,11 @@
         <div class="clear"></div>
         
         <!-- Body -->
-        <div class="dvBody">
-            <?php echo $this->layout()->content ?>
+        <div id="dvBackground">
+            <div class="dvBody">
+                <?php echo $this->layout()->content ?>
+            </div>
+            <div class="clear"></div>
         </div>
         
         <!-- Footer -->

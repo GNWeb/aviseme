@@ -1,4 +1,6 @@
 <?php
+header("Content-Type: text/html; charset=ISO-8859-1",true);
+header("Access-Control-Allow-Origin: *");
 
 // Define path to application directory
 defined('APPLICATION_PATH')

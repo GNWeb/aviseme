@@ -23,7 +23,7 @@ class DestinoController extends Zend_Controller_Action
         $destinoBsn = new Business_Destino();
         $filtro = @$_REQUEST['query'];
         $destinos = $destinoBsn->listar($filtro);
-        $rs = array();
+        $rs['suggestions'] = array();
         foreach($destinos as $destino) {
             $dest = array();
             $dest['data'] = $destino['id_destino'];
@@ -35,6 +35,5 @@ class DestinoController extends Zend_Controller_Action
         echo json_encode($rs);
         die;
     }
-
 }
 
