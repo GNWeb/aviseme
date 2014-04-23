@@ -83,6 +83,17 @@ $this->colRight();
 
 <script type="text/javascript">
     $(document).ready(function() {
+        //Inicia a variável 
+        var telefone = null;
+        
+        <?php
+            //Seta o id do usuário já cadastrado
+            if( isset($this->dataForm['id_usuario']) ) {
+                echo "var id_usuario = " . $this->dataForm['id_usuario'] . ";\n";
+                echo "telefone = '" . $this->dataForm['tel'] . "';\n";
+            }
+        ?>
+        
         var telValido = false;
         var inAjax = false;
         
@@ -96,7 +107,11 @@ $this->colRight();
 
         //Submet o formulário
         $(".form-complemento-cadastro").submit(function() {
-            if( !telValido || inAjax ) {
+            if( inAjax ) {
+                return false;
+            }
+            if( !telValido ) {
+                msgTelefoneExistente();
                 return false;
             }
             
@@ -116,25 +131,40 @@ $this->colRight();
             $(".telAjax").show();
             
             $.ajax({
-                  url: "/usuario/consultar-tel",
-                  type: "post",
-                  async: false,
-                  dataType: "json",
-                  data: {tel:objField.val()},
-                  success: function(rs) {
-                      if (rs.return == true) {
-                          setNotification("O telefone informado já está cadastrado!", 'warning');
-                          telValido = false;
-                      } else {
-                          telValido = true;
-                      }            
-                      inAjax = false;
-                      $(".telAjax").hide();
-                  }
-              });
+                url: "/usuario/consultar-tel",
+                type: "post",
+                async: false,
+                dataType: "json",
+                data: {tel:objField.val()},
+                success: function(rs) {
+                    if (rs.return == true) {
+                        //Verica se o telefone já foi cadastrado e se o mesmo não é de propriedade do usuário
+                        telValido = validarTelefone();
+                    } else {
+                        telValido = true;
+                    }
+                    inAjax = false;
+                    $(".telAjax").hide();
+                }
+            });
         }
         atualizarFlagTelefoneCadastrado($("#inputTel"));
-
+        
+        //Exibe a mensagem de telefone existente
+        function msgTelefoneExistente() {
+            setNotification("O telefone informado já está cadastrado!", 'warning');
+        }
+        
+        //Valida se o telefone já foi cadastrado
+        function validarTelefone() {
+            if( !telefone || (telefone && telefone != $("#inputTel").val()) ) {
+                msgTelefoneExistente();
+                return false;
+            }
+            
+            return true;
+        }
+        
         //Exibe/Oculta o campo de confirmação de senha
         $("input[name=radNovoUsuario]").change(function() {
             if ($(this).val() == 2) {

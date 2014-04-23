@@ -24,6 +24,7 @@ class Business_Usuario
         $usuarioModel = new Model_Usuario();
         $filter = new Zend_Filter_Alnum();
         $arrTel['numero'] = $filter->filter($tel);
+        $flgEnviarSms = isset($usuario['id_usuario']) ? true : false;
         
         //Persiste o usuário
         $usuarioModel->salvar($usuario, $tel);
@@ -31,21 +32,14 @@ class Business_Usuario
         //Grava o telefone
         $telefoneModel = new Model_Telefone();
         $arrTel['id_usuario'] = $usuario['id_usuario'];
-        $arrTel['codigo'] = $this->gerarCodigoAtivacao();
         $telefoneModel->salvar($arrTel);
         
         //Envia o código de ativação para o número
-        $smsHelper = Zend_Controller_Action_HelperBroker::getStaticHelper('Sms');
-        $msg = "AVISEME - Codigo de ativacao: " . $arrTel['codigo'];
-        $smsHelper->enviar($msg, $arrTel['numero']);
-    }
-    
-    
-    /**
-     * Gera o código de ativação do telefone
-     */
-    public function gerarCodigoAtivacao() {
-        return rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        if ($flgEnviarSms) {
+            $smsHelper = Zend_Controller_Action_HelperBroker::getStaticHelper('Sms');
+            $msg = "AVISEME - Codigo de ativacao: " . $arrTel['codigo'];
+            $smsHelper->enviar($msg, $arrTel['numero']);
+        }
     }
 }
 
