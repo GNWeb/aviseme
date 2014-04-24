@@ -10,11 +10,15 @@ body {
     background-color: #f1f1fa;
     height: 100%;
 }
-p.msg {
+p.msg,
+p.msg2 {
     color: #666666;
     font-size: 14px;
     font-weight: bold;
     margin-left: 10px;
+}
+p.msg2 {
+    font-weight: normal;
 }
 div input {
     margin: 0;
@@ -181,11 +185,14 @@ div.dvPeriodo label.labelPeriodo {
 div.dvPeriodo div.form-group {
     float: left;
     clear: none;
-    width: auto;
+    width: 151px;
+}
+div.dvPeriodo div.form-group.group-data-inicio {
+    width: 146px;
 }
 div.dvPeriodo div.form-group input {
     margin: 0;
-    width: 100px;
+    width: 98px;
     float: left;
 }
 div#footer {
@@ -202,7 +209,8 @@ div #footer-content {
 }
 div.dvPeriodo div.form-group label {
     float: left;
-    margin-right: 15px;
+    margin: 0 14px 0 0;
+    /*margin-right: 15px;*/
 }
 div.dvPeriodo div.dvPeriodoFim input {
     
@@ -301,11 +309,13 @@ div.panel-form-complemento input.inputTel {
     padding: 6px 0 6px 20px;
     margin: 0;
     border-bottom: 1px solid #ececec;
+    color: #2a6496;
 }
 #ulStepBar li.current {
     background: #428bca;
 }
-#ulStepBar li.current a{
+#ulStepBar li.current a,
+#ulStepBar li.current {
     color: #fff;
 }
 #ulStepBar li.first {

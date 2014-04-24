@@ -22,17 +22,18 @@ class Business_Usuario
      */
     public function salvar(&$usuario, $tel = "") {
         $usuarioModel = new Model_Usuario();
-        $filter = new Zend_Filter_Alnum();
-        $arrTel['numero'] = $filter->filter($tel);
-        $flgEnviarSms = isset($usuario['id_usuario']) ? true : false;
-        
+        $flgEnviarSms = isset($usuario['id_usuario']) ? false : true;
+
         //Persiste o usuário
         $usuarioModel->salvar($usuario, $tel);
         
-        //Grava o telefone
+        //Registra o telefone
         $telefoneModel = new Model_Telefone();
+        $filter = new Zend_Filter_Alnum();
+        $arrTel['numero'] = $filter->filter($tel);
         $arrTel['id_usuario'] = $usuario['id_usuario'];
-        $telefoneModel->salvar($arrTel);
+
+        $telefoneModel->salvar($arrTel, $flgEnviarSms);
         
         //Envia o código de ativação para o número
         if ($flgEnviarSms) {
@@ -40,6 +41,17 @@ class Business_Usuario
             $msg = "AVISEME - Codigo de ativacao: " . $arrTel['codigo'];
             $smsHelper->enviar($msg, $arrTel['numero']);
         }
+    }
+    
+    /**
+     * Valida o código de ativação
+     * @param integer $idUsuario
+     * @param integer $codigo
+     * @return boolean
+     */
+    public function validarCodigoAtivacao($idUsuario, $codigo) {
+        $telefoneModel = new Model_Telefone();
+        return $telefoneModel->validarCodigoAtivacao($idUsuario, $codigo);
     }
 }
 

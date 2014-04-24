@@ -27,8 +27,20 @@ class UsuarioController extends Zend_Controller_Action
         }
     }
     
+    /**
+     * Finalizar o cadastro
+     */
     public function finalizarCadastroAction() {
+        //Recupera os parâmetros
         $this->_helper->util()->populateSession('cadastro');
+        $dataForm = $this->_helper->util()->getDataSession('cadastro');
+        $codigo = $this->_request->getParam('codigo');
+        $idUsuario = $dataForm['id_usuario'];
+        
+        //Valida o código de ativação
+        $usuarioBns = new Business_Usuario();
+        $flgValidado = $usuarioBns->validarCodigoAtivacao($idUsuario, $codigo);
+        Zend_Debug::dump($flgValidado);die;
     }
     
     /**
@@ -51,11 +63,12 @@ class UsuarioController extends Zend_Controller_Action
         $this->_helper->util()->populateSession('cadastro');
         $dataSession = new Zend_Session_Namespace('cadastro');
         $dataForm = $dataSession->data;
-
+        
         //Monta o array de usuario
         $usuario = array();
         $usuario['email'] = $dataForm['email'];
         $usuario['senha'] = $dataForm['senha'];
+        $dataForm['tel'] = str_replace("_", "", $dataForm['tel']);
         if (isset($dataForm['id_usuario'])) {
             $usuario['id_usuario'] = $dataForm['id_usuario'];
         }
@@ -65,5 +78,16 @@ class UsuarioController extends Zend_Controller_Action
         //Alimenta a sessão com o id do usuario
         $dataSession->data['id_usuario'] = $usuario['id_usuario'];
     }
+    
+    /**
+     * Limpa os dados de cadastro
+     */
+    public function limparSessaoAction() {
+        $namespace = new \Zend_Session_Namespace('cadastro');
+        $namespace->unsetAll();
+        
+        $this->_redirect("/");
+    }
+            
 }
 

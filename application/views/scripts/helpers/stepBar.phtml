@@ -18,8 +18,8 @@
             'link' => '/usuario/validar-telefone'
         ),
         array(
-            'label' => '4) Conclusão',
-            'link' => ''
+            'label' => '4) Finalizar',
+            'link' => '/usuario/finalizar-cadastro'
         )
     );
     
@@ -34,7 +34,7 @@
         <?php 
             foreach($steps as $step){ 
                 $class = ($step['link'] == $currentLink) ? "current" : "";
-                echo "<li class='{$class}'><a href='{$step['link']}'>{$step['label']}</a></li>";
+                echo "<li class='{$class}'>{$step['label']}</li>";
             }
         ?>
     </ul>

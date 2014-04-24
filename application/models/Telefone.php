@@ -28,21 +28,22 @@ class Model_Telefone extends Zend_Db_Table_Abstract {
     /**
      * Persiste o telefone no banco
      * @param array $tel
+     * @param boolean $flgEnviarSms
      * @return boolean
      */
-    public function salvar(&$tel) {
-        //Limpa os telefone inativos
-        $this->limparTelefonesInativos($tel['numero'], $tel['id_usuario']);
-        
-        $where = "numero = '" . $tel['numero'] . "' AND id_usuario = " . $tel['id_usuario'];
+    public function salvar(&$tel, $flgEnviarSms) {        
+        $where = "id_usuario = " . $tel['id_usuario'];
         $listTel = $this->fetchAll($where)->toArray();
+        $tel['ativo'] = ( !$tel['ativo'] ) ? 0 : 1; 
         
         if( count($listTel) > 0 ) {
             //Atualiza um telefone existente
             $this->update($tel, $where);
         } else {
             //Insere um novo telefone
-            $tel['codigo'] = $this->gerarCodigoAtivacao();
+            if ($flgEnviarSms) {
+                $tel['codigo'] = $this->gerarCodigoAtivacao();
+            }
             $tel['id_telefone'] = $this->insert($tel);
         }
         return true;
@@ -67,6 +68,28 @@ class Model_Telefone extends Zend_Db_Table_Abstract {
      */
     public function gerarCodigoAtivacao() {
         return rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+    }
+    
+    /**
+     * Valida o código de ativação
+     * @param integer $idUsuario
+     * @param integer $codigo
+     * @return boolean
+     */
+    public function validarCodigoAtivacao($idUsuario, $codigo) {
+        //Consulta o código no banco
+        $where = "id_usuario = {$idUsuario} AND codigo = {$codigo}";
+        $listTel = $this->fetchAll($where)->toArray();
+        //Altera o status de ativação
+        if( count($listTel) ) {
+            $tel = $listTel[0];
+            $tel['ativo'] = 1;
+            $this->update($tel, "id_telefone = {$tel['id_telefone']}");
+            
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

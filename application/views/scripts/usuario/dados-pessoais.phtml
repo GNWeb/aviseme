@@ -45,7 +45,8 @@ $this->stepBar();
                         <label for="inputSenha" class="control-label">Senha</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="inputSenha" 
-                                   required maxlength="10" placeholder="Senha" name="senha">
+                                   required maxlength="10" placeholder="Senha" name="senha"
+                                   value="<?php echo isset($this->dataForm['senha']) ? $this->dataForm['senha'] : '' ?>">
                         </div>
                     </div>
                     <!-- Confirma da Senha -->
@@ -53,8 +54,8 @@ $this->stepBar();
                         <label for="inputSenhaConf" class="control-label">Confirme a Senha</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="inputSenhaConf" 
-                                   required maxlength="10" placeholder="Confirmação da senha"
-                                   name="conf_senha">
+                                   required maxlength="10" placeholder="Confirmação da senha" name="conf_senha"
+                                   value="<?php echo isset($this->dataForm['senha']) ? $this->dataForm['senha'] : '' ?>">
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -79,7 +80,6 @@ $this->stepBar();
 //Coluna da direita
 $this->colRight();
 ?>
-
 
 <script type="text/javascript">
     $(document).ready(function() {

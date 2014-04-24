@@ -57,7 +57,7 @@ if ($action == 'dados-voo') {
                         Buscar por passagens entre os dias:
                     </label>
                     <!-- Data início -->
-                    <div class="form-group">
+                    <div class="form-group group-data-inicio">
                         <input type="text" class="form-control datepicker" 
                                value="<?php echo $this->dataForm['data_inicio'] ? $this->dataForm['data_inicio'] : '' ?>" 
                                id="inputDataInicio" name="data_inicio" required>
@@ -147,6 +147,7 @@ if ($action == 'dados-voo') {
             }
         };
         
+        //Inicia o evento de autocomplete
         $('.inputLocalizacao').autocomplete(options);
         
 
@@ -168,10 +169,7 @@ if ($action == 'dados-voo') {
         
         //Limpa os campos
         $("button[type=reset]").click(function() {
-            $("form.form-horizontal input").each(function() {
-                $(this).attr("value", "");
-                $(this).val("");
-            });
+            window.location = "/usuario/limpar-sessao";
         });
 
     });

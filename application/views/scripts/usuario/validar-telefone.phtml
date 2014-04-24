@@ -10,18 +10,18 @@ $this->stepBar();
             <div class="panel-body">
                 <h3>Informe o código de validação</h3>
 
-                <p class="msg">Foi enviado um código de validação para o seu celular. Insira esse código no campo abaixo para finalizar o seu cadastro.</p>
+                <p class="msg">Foi enviado um código de validação para o seu celular. Insira o código no campo abaixo para dar continuidade ao cadastro.</p>
+                <p class="msg2">* O envio do SMS pode levar alguns minutos. Caso a demora seja maior do que o previsto, será possível dar continuidade ao cadastro através do link enviado para o seu email.</p>
                 <br />
                 
                 <!-- Formulaário -->
-                <form class="form-horizontal form-complemento-cadastro" role="form" method="post" action="/usuario/validar-telefone">
+                <form class="form-horizontal form-complemento-cadastro" role="form" method="post" action="/usuario/finalizar-cadastro">
 
                     <!-- Codigo -->
                     <div class="form-group dvCampoTel">
                         <label for="inputTel" class="control-label">Código</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control bfh-phone inputTel" name="tel"
-                                   id="inputTel" required>
+                            <input type="text" class="form-control" name="codigo" maxlength="4" required>
                         </div>
                     </div>
                     
@@ -51,68 +51,9 @@ $this->colRight();
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var telValido = false;
-        var inAjax = false;
-        
-        //Carrega as máscaras e plugins dos campos
-        carregarMascaras();
-
         //Volta para a página anterior
         $(".btn-voltar").click(function() {
             window.location = '/usuario/dados-pessoais';
         });
-
-        //Submet o formulário
-        $(".form-complemento-cadastro").submit(function() {
-            if( !telValido || inAjax ) {
-                return false;
-            }
-            
-            //Valida as senhas
-            if ($("#inputSenha").val() != $("#inputSenhaConf").val()) {
-                setNotification("As senhas devem ser iguais!", 'warning');
-                return false;
-            }
-        });
-
-        //Verifica se o telefone já foi cadastrado
-        $("#inputTel").blur(function() {
-            atualizarFlagTelefoneCadastrado($(this));
-        });
-        function atualizarFlagTelefoneCadastrado(objField) {
-            inAjax = true;
-            $(".telAjax").show();
-            
-            $.ajax({
-                  url: "/usuario/consultar-tel",
-                  type: "post",
-                  async: false,
-                  dataType: "json",
-                  data: {tel:objField.val()},
-                  success: function(rs) {
-                      if (rs.return == true) {
-                          setNotification("O telefone informado já está cadastrado!", 'warning');
-                          telValido = false;
-                      } else {
-                          telValido = true;
-                      }            
-                      inAjax = false;
-                      $(".telAjax").hide();
-                  }
-              });
-        }
-        atualizarFlagTelefoneCadastrado($("#inputTel"));
-
-        //Exibe/Oculta o campo de confirmação de senha
-        $("input[name=radNovoUsuario]").change(function() {
-            if ($(this).val() == 2) {
-                $("div.dvConfSenha input").attr('disabled', 1);
-                $("div.dvConfSenha").hide();
-            } else {
-                $("div.dvConfSenha input").removeAttr('disabled');
-                $("div.dvConfSenha").show();
-            }
-        });
-        $("input[name=radNovoUsuario]:checked").change();
     });
 </script>
