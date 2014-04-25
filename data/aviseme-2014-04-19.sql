@@ -15,7 +15,6 @@ WITH (
 );
 ALTER TABLE destino
   OWNER TO postgres;
-
 -- Table: telefone
 
 -- DROP TABLE telefone;
@@ -30,7 +29,7 @@ CREATE TABLE telefone
   CONSTRAINT pk_telefone PRIMARY KEY (id_telefone),
   CONSTRAINT fk_telefone_usuario FOREIGN KEY (id_usuario)
       REFERENCES usuario (id_usuario) MATCH Unknown
-      ON UPDATE CASCADE ON DELETE NO ACTION,
+      ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT uk_telefone UNIQUE (numero)
 )
 WITH (
@@ -38,8 +37,7 @@ WITH (
 );
 ALTER TABLE telefone
   OWNER TO postgres;
-
-  -- Table: usuario
+-- Table: usuario
 
 -- DROP TABLE usuario;
 
@@ -54,4 +52,17 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE usuario
+  OWNER TO postgres;
+-- Function: remove_acento(text)
+
+-- DROP FUNCTION remove_acento(text);
+
+CREATE OR REPLACE FUNCTION remove_acento(text)
+  RETURNS text AS
+$BODY$
+SELECT TRANSLATE($1,'·‡„‚‰¡¿√¬ƒÈËÍÎ…» ÀÌÏÓÔÕÃŒœÛÚıÙˆ”“’‘÷˙˘˚¸⁄Ÿ€‹Ò—Á«ˇ˝›','aaaaaAAAAAeeeeEEEEiiiiIIIIoooooOOOOOuuuuUUUUnNcCyyY')
+$BODY$
+  LANGUAGE sql IMMUTABLE STRICT
+  COST 100;
+ALTER FUNCTION remove_acento(text)
   OWNER TO postgres;
