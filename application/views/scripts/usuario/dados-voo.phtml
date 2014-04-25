@@ -134,6 +134,13 @@ if ($action == 'dados-voo') {
             }
         });
         
+        //Altera a data final igualando com a inicial
+        $("#inputDataInicio").change(function() {
+            if( $(this).val() != "" && $("#inputDataFinal").val() == "" ) {
+                $("#inputDataFinal").val($(this).val());
+            }
+        });
+        
         var options = {
             serviceUrl: '/destino/listar-ajax',
             type: 'post',
