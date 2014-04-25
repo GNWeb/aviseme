@@ -383,3 +383,10 @@ div.rowDadosPess div.dvCampoSenha {
     float: left;
     clear: none;
 }
+#ui-datepicker-div {
+    font-size: 14px;
+    width: 18em;
+}
+#ui-datepicker-div a.ui-state-default {
+    text-align: center;
+}
