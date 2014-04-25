@@ -40,7 +40,21 @@ class UsuarioController extends Zend_Controller_Action
         //Valida o código de ativação
         $usuarioBns = new Business_Usuario();
         $flgValidado = $usuarioBns->validarCodigoAtivacao($idUsuario, $codigo);
-        Zend_Debug::dump($flgValidado);die;
+        if( $flgValidado ) {
+            $tpMsg = "success";
+            $msg = "Obrigado! Seu cadastro foi realizado com sucesso.";
+            
+            //Sobe a mensagem para a sessão
+            Util_Notificacao::adicionarMensagem($msg, $tpMsg);
+            $this->_redirect("/");
+        } else {
+            $tpMsg = "error";
+            $msg = "O código informado não é valido!<br />Sugerimos que verifique o código novamente e se necessário solicite o reenvio.";
+            
+            //Sobe a mensagem para a sessão
+            Util_Notificacao::adicionarMensagem($msg, $tpMsg);
+            $this->_redirect("/usuario/validar-telefone");
+        }
     }
     
     /**

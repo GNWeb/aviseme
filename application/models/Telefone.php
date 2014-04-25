@@ -34,7 +34,7 @@ class Model_Telefone extends Zend_Db_Table_Abstract {
     public function salvar(&$tel, $flgEnviarSms) {        
         $where = "id_usuario = " . $tel['id_usuario'];
         $listTel = $this->fetchAll($where)->toArray();
-        $tel['ativo'] = ( !$tel['ativo'] ) ? 0 : 1; 
+        $tel['ativo'] = ( !isset($tel['ativo']) ) ? 0 : 1; 
         
         if( count($listTel) > 0 ) {
             //Atualiza um telefone existente
