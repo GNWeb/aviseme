@@ -41,12 +41,9 @@ class UsuarioController extends Zend_Controller_Action
         $usuarioBns = new Business_Usuario();
         $flgValidado = $usuarioBns->validarCodigoAtivacao($idUsuario, $codigo);
         if( $flgValidado ) {
-            $tpMsg = "success";
-            $msg = "Obrigado! Seu cadastro foi realizado com sucesso.";
-            
-            //Sobe a mensagem para a sessão
-            Util_Notificacao::adicionarMensagem($msg, $tpMsg);
-            $this->_redirect("/");
+            //Limpa os dados de cadastro da sessão
+            //$namespace = new \Zend_Session_Namespace('cadastro');
+            //$namespace->unsetAll();
         } else {
             $tpMsg = "error";
             $msg = "O código informado não é valido!<br />Sugerimos que verifique o código novamente e se necessário solicite o reenvio.";
@@ -77,7 +74,7 @@ class UsuarioController extends Zend_Controller_Action
         $this->_helper->util()->populateSession('cadastro');
         $dataSession = new Zend_Session_Namespace('cadastro');
         $dataForm = $dataSession->data;
-        
+
         //Monta o array de usuario
         $usuario = array();
         $usuario['email'] = $dataForm['email'];
@@ -91,6 +88,18 @@ class UsuarioController extends Zend_Controller_Action
         
         //Alimenta a sessão com o id do usuario
         $dataSession->data['id_usuario'] = $usuario['id_usuario'];
+        
+        //Registra os dados do voo
+        $bsnDestino = new Business_Destino();
+        $voo = array();
+        $voo['id_voo'] = ( isset($dataForm['id_voo']) ) ? $dataForm['id_voo'] : NULL;
+        $voo['id_destino_origem']   = $dataForm['origem_data'];
+        $voo['id_destino_destino']  = $dataForm['destino_data'];
+        $voo['id_usuario']          = $usuario['id_usuario'];
+        $voo['data_inicio']         = Util_Global::dataIso($dataForm['data_inicio']);
+        $voo['data_fim']            = Util_Global::dataIso($dataForm['data_fim']);
+        $bsnDestino->adicionarVoo($voo);
+        $dataSession->data['id_voo'] = $voo['id_voo'];
     }
     
     /**

@@ -16,12 +16,12 @@ if ($action == 'dados-voo') {
         <div class="panel-heading">
             <span class="glyphicon glyphicon-lock"></span> Avise-me sobre promoções de passagens</div>
         <div class="panel-body">
-            <?php 
-                if ($action == 'dados-voo') {
-                    echo "<h3>Preencha os dados do seu voo</h3>";
-                }
+            <?php
+            if ($action == 'dados-voo') {
+                echo "<h3>Preencha os dados do seu voo</h3>";
+            }
             ?>
-            
+
             <!-- Formulaário -->
             <form class="form-horizontal" role="form" method="post" action="/usuario/dados-pessoais">
 
@@ -32,10 +32,10 @@ if ($action == 'dados-voo') {
                             Origem:</label>
                         <div class="col-sm-10">
                             <input type="text" name="origem" id="inputDe" required
-                                   value="<?php echo $this->dataForm['origem'] ? $this->dataForm['origem'] : '' ?>" 
+                                   value="<?php echo isset($this->dataForm['origem']) ? $this->dataForm['origem'] : '' ?>" 
                                    class="form-control inputLocalizacao" placeholder="Digite a origem">
                             <input type="hidden" name="origem_data"
-                                   value="<?php echo $this->dataForm['origem_data'] ? $this->dataForm['origem_data'] : '' ?>">
+                                   value="<?php echo isset($this->dataForm['origem_data']) ? $this->dataForm['origem_data'] : '' ?>">
                         </div>
                     </div>
                     <!-- Campo Destino -->
@@ -44,7 +44,7 @@ if ($action == 'dados-voo') {
                             Destino:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control inputLocalizacao" name="destino" id="inputPara"
-                                   value="<?php echo $this->dataForm['destino'] ? $this->dataForm['destino'] : '' ?>"
+                                   value="<?php echo isset($this->dataForm['destino']) ? $this->dataForm['destino'] : '' ?>"
                                    placeholder="Digite o destino" required>
                             <input type="hidden" name="destino_data"
                                    value="<?php echo $this->dataForm['destino_data'] ? $this->dataForm['destino_data'] : '' ?>">
@@ -59,7 +59,7 @@ if ($action == 'dados-voo') {
                     <!-- Data início -->
                     <div class="form-group group-data-inicio">
                         <input type="text" class="form-control datepicker" 
-                               value="<?php echo $this->dataForm['data_inicio'] ? $this->dataForm['data_inicio'] : '' ?>" 
+                               value="<?php echo isset($this->dataForm['data_inicio']) ? $this->dataForm['data_inicio'] : '' ?>" 
                                id="inputDataInicio" name="data_inicio" required>
                         <span class="add-on">
                             <i class="icon-calendar"></i>
@@ -68,7 +68,7 @@ if ($action == 'dados-voo') {
                     <!-- Data fim -->
                     <div class="form-group">
                         <label for="inputPara" class="control-label">à</label>
-                        <input type="text" value="<?php echo $this->dataForm['data_fim'] ? $this->dataForm['data_fim'] : '' ?>" class="form-control datepicker" 
+                        <input type="text" value="<?php echo isset($this->dataForm['data_fim']) ? $this->dataForm['data_fim'] : '' ?>" class="form-control datepicker" 
                                id="inputDataFinal" name="data_fim" required>
                     </div>                            
 
@@ -79,7 +79,7 @@ if ($action == 'dados-voo') {
                     <label for="inputValor" class="control-label" >Valor máximo que gostaria de pagar (R$):</label>
                     <div class="col-sm-10">
                         <input type="text" 
-                               value="<?php echo $this->dataForm['valor'] ? $this->dataForm['valor'] : '' ?>" class="form-control money" 
+                               value="<?php echo isset($this->dataForm['valor']) ? $this->dataForm['valor'] : '' ?>" class="form-control money" 
                                name="valor" id="inputValor" required>
                     </div>
                 </div>
@@ -110,6 +110,7 @@ if ($action == 'dados-voo') {
 
 <script type="text/javascript">
     $(document).ready(function() {
+
         //Carrega as máscaras e plugins dos campos
         carregarMascaras();
 
@@ -129,34 +130,37 @@ if ($action == 'dados-voo') {
             inputHiddenLoc = $(this).parent().find("input[type=hidden]").attr('name');
         });
         $('.inputLocalizacao').blur(function() {
-            if ($('input[name='+inputHiddenLoc+']').val() == '') {
+            if ($('input[name=' + inputHiddenLoc + ']').val() == '') {
                 $(this).val('');
             }
         });
-        
+
         //Altera a data final igualando com a inicial
         $("#inputDataInicio").change(function() {
-            if( $(this).val() != "" && $("#inputDataFinal").val() == "" ) {
+            if ($(this).val() != "" && $("#inputDataFinal").val() == "") {
                 $("#inputDataFinal").val($(this).val());
             }
         });
-        
+
+        //Opções do autocomplete
         var options = {
             serviceUrl: '/destino/listar-ajax',
             type: 'post',
+            minChars: 0,
             dataType: 'json',
+            autoSelectFirst: true,
             onSelect: function(rs) {
-                $('input[name='+inputHiddenLoc+']').val(rs.data);
+                $('input[name=' + inputHiddenLoc + ']').val(rs.data);
                 return false;
             },
             onSearchStart: function() {
-                $('input[name='+inputHiddenLoc+']').val('');
+                $('input[name=' + inputHiddenLoc + ']').val('');
             }
         };
-        
+
         //Inicia o evento de autocomplete
         $('.inputLocalizacao').autocomplete(options);
-        
+
 
         //Submete o formulário
         $(".form-horizontal").submit(function() {
@@ -166,14 +170,14 @@ if ($action == 'dados-voo') {
                 setNotification("A data final não pode ser menor que a data inicial!", 'warning');
                 return false;
             }
-            
+
             //Valida as localizações
-            if($("input[name=origem_data]").val() == $("input[name=destino_data]").val()) {
+            if ($("input[name=origem_data]").val() == $("input[name=destino_data]").val()) {
                 setNotification("A Origem deve ser diferente do Destino!", 'warning');
                 return false;
             }
         });
-        
+
         //Limpa os campos
         $("button[type=reset]").click(function() {
             window.location = "/usuario/limpar-sessao";

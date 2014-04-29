@@ -27,7 +27,7 @@ class DestinoController extends Zend_Controller_Action
         foreach($destinos as $destino) {
             $dest = array();
             $dest['data'] = $destino['id_destino'];
-            $dest['value'] = $destino['nome'];
+            $dest['value'] = trim($destino['nome']);
             
             $rs['suggestions'][] = $dest;
             

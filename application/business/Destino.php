@@ -55,7 +55,33 @@ class Business_Destino
         //return $destinoModel->fetchAll("nome ilike " . $destinoModel->getAdapter()->quote($filtro), "nome")->toArray();
         return $destinoModel->fetchAll("remove_acento(nome) ILIKE remove_acento('%" . $filtro . "%')", "nome")->toArray();
     }
-
-
+    
+    /**
+     * Lista os destinos em ordem alfabética no formato JSON
+     * @param string $filtro
+     * @return string
+     */
+    public function listarJson($filtro = "") {
+        $destinos = $this->listar($filtro);
+        $rs = array();
+        foreach($destinos as $destino) {
+            $dest = array();
+            $dest['data'] = $destino['id_destino'];
+            $dest['value'] = $destino['nome'];
+            
+            $rs[] = $dest;
+            
+        }
+        return json_encode($rs);
+    }
+    
+    /**
+     * Adiciona uma solicitação de voo
+     * @param array $voo
+     */
+    public function adicionarVoo(&$voo) {
+        $mdlVoo = new Model_Voo();
+        $mdlVoo->salvar($voo);
+    }
 }
 
