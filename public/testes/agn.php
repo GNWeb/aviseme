@@ -1,0 +1,82 @@
+<?php
+
+//Exibição de erros
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
+// Dados de login
+$urlLogin = 'https://www.argentglobalnetwork.com/handler.php?h=user_login';
+$formloginemail = 'gustavonobrega.efti@gmail.com';
+$formloginpassw = '090288';
+$loginRedirect = 'https://www.argentglobalnetwork.com/backoffice/index.html';
+
+// Inicia o cURL
+$ch = curl_init();
+
+//Inicia a operação de login
+efetuarLogin($ch, $urlLogin, $formloginemail, $formloginpassw, $loginRedirect);
+
+//Valida o anúncio
+$urlAd = "http://www.ukadslist.com/view/item-332435-Advertising-works-with-ArgentGlobalNetwork.html";
+validarAnuncio($ch, $urlAd);
+
+// Encerra o cURL
+curl_close($ch);
+
+//Efetua o login através do curl
+function efetuarLogin(&$ch, $urlLogin, $formloginemail, $formloginpassw, $loginRedirect) {
+    
+    // Define a URL original (do formulário de login)
+    curl_setopt($ch, CURLOPT_URL, $urlLogin);
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+    // Habilita o protocolo POST
+    curl_setopt($ch, CURLOPT_POST, 1);
+
+    // Define os parâmetros que serão enviados (usuário e senha por exemplo)
+    curl_setopt($ch, CURLOPT_POSTFIELDS, 'formloginemail=' . $formloginemail . '&formloginpassw= ' . $formloginpassw);
+
+    // Imita o comportamento patrão dos navegadores: manipular cookies
+    curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
+
+    // Define o tipo de transferência (Padrão: 1)
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    // Executa a requisição
+    //HTML da página resultado (depois do submit do login)
+    $store = curl_exec($ch);
+
+    // Define uma nova URL para ser chamada (após o login)
+    curl_setopt($ch, CURLOPT_URL, $loginRedirect);
+
+    // Executa a segunda requisição
+    //HTML da página chamada na segunda requisição
+    $content = curl_exec($ch);
+}
+
+/**
+ * Valida a url do anúncio
+ */
+function validarAnuncio($ch, $link1) {
+    //Parâmetros
+    $urlAdValid = "https://www.argentglobalnetwork.com/backoffice/ad-confirm.html";
+    $number = 146792;
+    $link2 = "http://www.ukadslist.com/";
+    
+    //Envia os parâmetros para a validação
+    
+    // Define uma nova URL para ser chamada (após o login)
+    curl_setopt($ch, CURLOPT_URL, $urlAdValid);
+    
+    // Habilita o protocolo POST
+    curl_setopt($ch, CURLOPT_POST, 1);
+
+    // Define os parâmetros que serão enviados (usuário e senha por exemplo)
+    curl_setopt($ch, CURLOPT_POSTFIELDS, 'link1=' . $link1 . '&number= ' . $number . '&link2='.$link2);
+
+    // Executa a requisição
+    echo $content = curl_exec($ch);
+}
+
+?>
